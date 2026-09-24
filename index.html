@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Craft — Le Minecraft du BUT Science des Données</title>
+  <meta name="description" content="Mini-jeu 3D pédagogique dans le navigateur pour vulgariser le SQL et les bases de données relationnelles auprès des lycéens (module PPP BUT Science des Données).">
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+  <!-- 3D Canvas WebGL Container -->
+  <div id="canvas-container"></div>
+
+  <!-- First-Person Aim Crosshair -->
+  <div id="crosshair"></div>
+
+  <!-- Top Navigation Bar -->
+  <header class="top-nav">
+    <button id="nav-btn-table" class="nav-pill-btn" title="Ouvrir la table SQL (Touche T)">
+      <span>📊</span>
+      <span>Base de Données</span>
+      <span class="badge badge-pk">T</span>
+    </button>
+    <button id="nav-btn-sound" class="nav-pill-btn" title="Activer / Couper le son">
+      <span id="sound-icon">🔊</span>
+      <span id="sound-label">Son ON</span>
+    </button>
+    <button id="nav-btn-help" class="nav-pill-btn" title="Guide des commandes">
+      <span>❓</span>
+      <span>Aide</span>
+    </button>
+  </header>
+
+  <!-- Bottom Minecraft Hotbar -->
+  <div class="hotbar-container">
+    <!-- Quick Color Selector -->
+    <div class="color-palette-bar">
+      <span class="color-palette-label">Couleur :</span>
+      <div class="color-choice active" data-color="rouge" title="Rouge"></div>
+      <div class="color-choice" data-color="bleu" title="Bleu"></div>
+      <div class="color-choice" data-color="vert" title="Vert"></div>
+      <div class="color-choice" data-color="jaune" title="Jaune"></div>
+      <span id="active-color-name" style="margin-left: 6px; font-weight: 700;">Rouge</span>
+      <span style="font-size: 10px; color: var(--text-muted);">(Touche C)</span>
+    </div>
+
+    <!-- Hotbar Slots 1 to 7 -->
+    <div class="minecraft-hotbar">
+      <div class="hotbar-slot active" data-slot="1" title="Poser une Maison (INSERT)">
+        <span class="slot-number">1</span>
+        <span class="slot-icon">🏠</span>
+        <span class="slot-label">Maison</span>
+      </div>
+      <div class="hotbar-slot" data-slot="2" title="Poser une Tour (INSERT)">
+        <span class="slot-number">2</span>
+        <span class="slot-icon">🗼</span>
+        <span class="slot-label">Tour</span>
+      </div>
+      <div class="hotbar-slot" data-slot="3" title="Poser une Ferme (INSERT)">
+        <span class="slot-number">3</span>
+        <span class="slot-icon">🌾</span>
+        <span class="slot-label">Ferme</span>
+      </div>
+      <div class="hotbar-slot" data-slot="4" title="Poser un Pont (INSERT)">
+        <span class="slot-number">4</span>
+        <span class="slot-icon">🌉</span>
+        <span class="slot-label">Pont</span>
+      </div>
+      <div class="hotbar-slot" data-slot="5" title="Repeindre un bloc (UPDATE)">
+        <span class="slot-number">5</span>
+        <span class="slot-icon">🎨</span>
+        <span class="slot-label">Pinceau</span>
+      </div>
+      <div class="hotbar-slot" data-slot="6" title="Détruire un bloc (DELETE)">
+        <span class="slot-number">6</span>
+        <span class="slot-icon">🪓</span>
+        <span class="slot-label">Hache</span>
+      </div>
+      <div class="hotbar-slot" data-slot="7" title="Sélectionner &amp; Requêter (SELECT / JOIN)">
+        <span class="slot-number">7</span>
+        <span class="slot-icon">🔍</span>
+        <span class="slot-label">Loupe</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Start / Pause / Instructions Overlay -->
+  <div id="instructions-overlay" class="modal-overlay">
+    <div class="overlay-content">
+      <div class="game-logo">SQL CRAFT</div>
+      <div class="game-sub">Le Minecraft du <strong>BUT Science des Données</strong> (Module PPP)</div>
+
+      <div class="controls-guide-grid">
+        <div class="guide-card">
+          <span class="guide-icon">🕹️</span>
+          <div>
+            <div class="guide-title">Déplacements</div>
+            <div class="guide-desc">ZQSD ou WASD pour marcher • Espace pour sauter • Maj pour sprinter</div>
+          </div>
+        </div>
+        <div class="guide-card">
+          <span class="guide-icon">🖱️</span>
+          <div>
+            <div class="guide-title">Souris &amp; Viseur</div>
+            <div class="guide-desc">Tourner la tête • Clic gauche pour interagir avec le bloc ciblé</div>
+          </div>
+        </div>
+        <div class="guide-card">
+          <span class="guide-icon">🔢</span>
+          <div>
+            <div class="guide-title">Hotbar &amp; Outils</div>
+            <div class="guide-desc">Touches 1 à 7 ou Molette de la souris • Touche C pour changer de couleur</div>
+          </div>
+        </div>
+        <div class="guide-card">
+          <span class="guide-icon">⚡</span>
+          <div>
+            <div class="guide-title">Console SQL en direct</div>
+            <div class="guide-desc">Chaque bloc posé, peint ou détruit affiche sa vraie requête SQL !</div>
+          </div>
+        </div>
+      </div>
+
+      <button id="btn-play" class="btn-play-large">CLIQUE POUR JOUER 🚀</button>
+      <div style="margin-top: 14px; font-size: 12px; color: #94a3b8;">
+        Appuie sur <strong>Échap</strong> à tout moment pour libérer la souris.
+      </div>
+    </div>
+  </div>
+
+  <!-- Entry Script -->
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
