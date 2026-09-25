@@ -111,14 +111,33 @@ Un panneau de quêtes guide le joueur à travers 5 missions progressives :
 
 ## 🚀 Installation & Démarrage Local
 
-Prérequis : [Node.js](https://nodejs.org/) (v18 ou supérieur recommandé).
+### 📋 Prérequis (à installer une seule fois sur le PC)
+
+Avant de lancer le jeu pour la première fois, il faut installer les outils suivants :
+
+| Logiciel | Rôle | Version minimale | Téléchargement |
+| :--- | :--- | :---: | :--- |
+| **Node.js** | Exécute le projet et le serveur de développement (`npm run dev`) | **v20.19** ou **v22.12+** (LTS conseillé) | [nodejs.org](https://nodejs.org/) |
+| **npm** | Gestionnaire de paquets (installé **automatiquement avec Node.js**) | Fourni avec Node.js | — |
+| **Git** | Récupère le code source du projet (`git clone`) | Toute version récente | [git-scm.com](https://git-scm.com/) |
+| **Navigateur Web** | Affiche le jeu (WebGL requis) | Chrome, Edge ou Firefox à jour | — |
+
+> 💡 **Aucun autre logiciel n'est nécessaire** : les bibliothèques (Three.js, Vite…) s'installent automatiquement via `npm install`.
+
+**Vérifier que Node.js est bien installé** (ouvrir un terminal et taper) :
+```bash
+node --version   # doit afficher v20.19.x ou supérieur
+npm --version    # doit afficher une version (ex: 10.x)
+```
+
+### ⚙️ Étapes de lancement
 
 ```bash
 # 1. Cloner le dépôt
 git clone https://github.com/samyhouchat/SqlCraftGameplay.git
 cd SqlCraftGameplay
 
-# 2. Installer les dépendances
+# 2. Installer les dépendances (à faire une seule fois)
 npm install
 
 # 3. Lancer le serveur de développement
@@ -131,6 +150,8 @@ Pour générer la version de production optimisée :
 ```bash
 npm run build
 ```
+
+> ❓ **Pas de Git ?** Il est aussi possible de télécharger le projet au format ZIP depuis GitHub (*Bouton vert « Code » → Download ZIP*), puis de décompresser le dossier avant de lancer `npm install`.
 
 ---
 
